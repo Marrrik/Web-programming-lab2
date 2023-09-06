@@ -1,4 +1,4 @@
-from flask import Flask, redirect
+from flask import Flask, redirect, url_for
 app = Flask(__name__)
 
 @app.route("/")
@@ -57,3 +57,18 @@ def lab1():
     </body>
 </html>
 """
+
+@app.route("/lab1/dub")
+def dub(): 
+    return'''
+<!doctype html>
+<head>
+<link rel="stylesheet" type="text/css" href="/static/lab1.css">
+</head>
+<html>
+    <body>
+    <h1>Дуб</h1>
+    <img src = "''' + url_for('static', filename='dub.jpg') + '''">
+    </body>
+</html>
+'''

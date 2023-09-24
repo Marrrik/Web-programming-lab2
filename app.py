@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, render_template
 app = Flask(__name__)
 
 @app.route("/")
@@ -172,3 +172,11 @@ def backend():
     </body> 
 </html>
 '''
+
+@app.route('/lab2/example')
+def example():
+    name = 'Мрак Старченко'
+    num_lab = '2'
+    num_group = 'ФБИ-14'
+    rang = '2'
+    return render_template('example.html', name=name, num_lab=num_lab, num_group=num_group, rang=rang)

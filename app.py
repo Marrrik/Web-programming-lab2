@@ -176,7 +176,7 @@ def backend():
 @app.route('/lab2/example')
 def example():
     name = 'Мрак Старченко'
-    num_lab = '2'
+    lab = 'Лабораторная работа 2'
     num_group = 'ФБИ-14'
-    rang = '2'
-    return render_template('example.html', name=name, num_lab=num_lab, num_group=num_group, rang=rang)
+    rang = '2 курс'
+    return render_template('example.html', name=name, lab=lab, num_group=num_group, rang=rang)

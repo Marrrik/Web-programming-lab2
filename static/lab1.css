@@ -1,0 +1,105 @@
+/* html {
+    height: 100%;
+} */
+
+body {
+    /* min-height: 100%;
+    position: relative;
+    padding-bottom: 55px; */
+    margin: 0;
+}
+
+header {
+    position: absolute;
+    top: 0;
+    background-color: blueviolet;
+    color: bisque;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 16pt;
+    height: 80px;
+    width: 100%;
+    
+}
+main {
+    position: absolute;
+    margin-top: 80px;
+}
+
+footer {
+        position: absolute;
+        bottom: 0;
+        background-color: blueviolet;
+        color: bisque;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        font-size: 14pt;
+        height: 40px;
+        width: 100%;
+        text-align: right;
+        right: 0;
+        padding-right: 10px;
+}
+
+.lab1bodydub, .lab1bodypy {
+    text-align: center;
+    color: bisque;
+    background-color: blueviolet;
+}
+
+img {
+    height: 300px;
+    width: 250px;
+}
+
+.bodynstu {
+    text-align: center;
+    color: rgb(250, 18, 11);
+    background-color: rgb(7, 108, 12);
+}
+
+.nstu{
+    height: 400px;
+    width: 400px;
+}
+
+.ramka {
+    display: flex;
+}
+.textabautpy {
+    text-align: left;
+    text-indent: 25px;
+    padding: 20px;
+    padding-top: 25px;
+    background-color: rgb(165, 105, 221);
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 18pt;
+}
+
+.imgpy {
+    height: 500px;
+    width: 500px;
+}
+
+.back {
+    text-align: center;
+    color: red;
+    background-color: rgb(152, 151, 151);
+}
+.textabautbk {
+    text-align: left;
+    text-indent: 25px;
+    padding: 20px;
+    padding-top: 25px;
+    background-color: rgb(152, 151, 151);
+    color: rgb(0, 0, 0);
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 18pt;
+}
+.imgbk {
+    height: 600px;
+    width: 800px;
+}

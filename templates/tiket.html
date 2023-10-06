@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block lab %} Лабораторная работа 3 {% endblock %}
+
+{% block main %}
+
+    {% if full_name and age and ticket_type and bunk and luggage and departure_point and destination and travel_date %}
+        <h1>Здравствуйте! {{ full_name }}</h1>
+        <div>Спасибо, что купили у нас билет!</div>
+        <h2>Билетная информация:</h2>
+        <p>ФИО пассажира: {{ full_name }}</p>
+        <p>Возраст: {{ age }} лет</p>
+        <p>Тип: {{ ticket_type }}</p>
+        <p>Полка: {{ bunk }}</p>
+        <p>Багаж: {{ 'Да' if luggage else 'Нет' }}</p>
+        <p>Пункт выезда: {{ departure_point }}</p>
+        <p>Пункт назначения: {{ destination }}</p>
+        <p>Дата поездки: {{ travel_date }}</p>
+        <div>
+            <a href="/lab3/gd">Занова</a>
+        </div>
+    {% else %}
+    <!-- <form> action="/lab3/buy_ticket" method="get" -->
+        <form>
+            <div>
+                <label>ФИО пассажира:</label>
+                <input type="text" name="full_name" required>
+            </div>
+        
+            <div>
+                <label for="age">Возраст:</label>
+                <input type="number" id="age" name="age" min="18" max="120" required>
+            </div>
+        
+            <div>
+                <label for="type">Тип:</label>
+                <select name="ticket_type" required>
+                <option value="Взрослый">Взрослый</option>
+                <option value="Детский">Детский</option>
+            </select>
+            </div>
+        
+            </div>
+                <label for="bunk">Полка:</label>
+                <select id="bunk" name="bunk" required>
+                    <option value="Нижняя">Нижняя</option>
+                    <option value="Верхняя">Верхняя</option>
+                    <option value="Верхняя боковая">Верхняя боковая</option>
+                    <option value="Нижняя боковая">Нижняя боковая</option>
+                </select>
+            </div>
+        
+            <div>
+                <label for="luggage">Багаж:</label>
+                <input type="checkbox" name="luggage">
+            </div>
+        
+            <div>
+                <label for="departure_point">Пункт выезда:</label>
+                <input type="text" name="departure_point" required>
+            </div>
+        
+            <div>
+                <label for="destination">Пункт назначения:</label>
+                <input type="text" name="destination" required>
+            </div>
+        
+            <div>
+                <label for="travel_date">Дата поездки:</label>
+                <input type="date" name="travel_date" required>
+            </div>
+
+            <div>
+                <input type="submit" value="Купить билет">
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}

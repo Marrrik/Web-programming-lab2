@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block lab %} Лабораторная работа 3 {% endblock %}
+
+{% block main %}
+    <h1>Здравствуйте! {{ful_name }}</h1>
+    <div>Спасибо, что купили у нас билет!</div>
+    <h2>Билетная информация</h2>
+    <p>ФИО пассажира: {full_name}</p>
+    <p>Возраст: {age} лет</p>
+    <p>Тип: {request.form['ticket_type']}</p>
+    <p>Полка: {bunk}</p>
+    <p>Багаж: {'Да' if luggage else 'Нет'}</p>
+    <p>Пункт выезда: {departure_point}</p>
+    <p>Пункт назначения: {destination}</p>
+    <p>Дата поездки: {travel_date}</p>
+{% endblock %}

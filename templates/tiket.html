@@ -4,7 +4,7 @@
 
 {% block main %}
 
-    {% if full_name and age and ticket_type and bunk and luggage and departure_point and destination and travel_date %}
+    <!-- {% if full_name and age and ticket_type and bunk and luggage and departure_point and destination and travel_date %}
         <h1>Здравствуйте! {{ full_name }}</h1>
         <div>Спасибо, что купили у нас билет!</div>
         <h2>Билетная информация:</h2>
@@ -19,60 +19,65 @@
         <div>
             <a href="/lab3/gd">Занова</a>
         </div>
-    {% else %}
+    {% else %} -->
     <!-- <form> action="/lab3/buy_ticket" method="get" -->
-        <form>
-            <div>
-                <label>ФИО пассажира:</label>
-                <input type="text" name="full_name" required>
-            </div>
-        
-            <div>
-                <label for="age">Возраст:</label>
-                <input type="number" id="age" name="age" min="18" max="120" required>
-            </div>
-        
-            <div>
-                <label for="type">Тип:</label>
-                <select name="ticket_type" required>
-                <option value="Взрослый">Взрослый</option>
-                <option value="Детский">Детский</option>
-            </select>
-            </div>
-        
-            </div>
-                <label for="bunk">Полка:</label>
-                <select id="bunk" name="bunk" required>
-                    <option value="Нижняя">Нижняя</option>
-                    <option value="Верхняя">Верхняя</option>
-                    <option value="Верхняя боковая">Верхняя боковая</option>
-                    <option value="Нижняя боковая">Нижняя боковая</option>
-                </select>
-            </div>
-        
-            <div>
-                <label for="luggage">Багаж:</label>
-                <input type="checkbox" name="luggage">
-            </div>
-        
-            <div>
-                <label for="departure_point">Пункт выезда:</label>
-                <input type="text" name="departure_point" required>
-            </div>
-        
-            <div>
-                <label for="destination">Пункт назначения:</label>
-                <input type="text" name="destination" required>
-            </div>
-        
-            <div>
-                <label for="travel_date">Дата поездки:</label>
-                <input type="date" name="travel_date" required>
-            </div>
+        <div class="ramka">
+            <form action="tiket_pay">
+                <div class="pole_tiket">
+                    <label>ФИО пассажира:</label>
+                    <input type="text" name="full_name" required>
+                </div>
+            
+                <div class="pole_tiket">
+                    <label for="age">Возраст:</label>
+                    <input type="number" id="age" name="age" min="18" max="120" required>
+                </div>
+            
+                <div class="pole_tiket">
+                    <label for="type">Тип:</label>
+                    <select name="ticket_type" required>
+                        <option value="Взрослый" name = "ticket_type">Взрослый</option>
+                        <option value="Детский" name = "ticket_type">Детский</option>
+                    </select>
+                </div>
+            
+                <div class="pole_tiket">
+                    <label for="bunk">Полка:</label>
+                    <select name="bunk" required>
+                        <option value="Нижняя">Нижняя</option>
+                        <option value="Верхняя">Верхняя</option>
+                        <option value="Верхняя боковая">Верхняя боковая</option>
+                        <option value="Нижняя боковая">Нижняя боковая</option>
+                    </select>
+                </div>
+            
+                <div class="pole_tiket">
+                    <label for="luggage">Багаж:</label>
+                    <input type="checkbox" name="luggage" value="yes">
+                </div>
+            
+                <div class="pole_tiket">
+                    <label for="departure_point">Пункт выезда:</label>
+                    <input type="text" name="departure_point" required>
+                </div>
+            
+                <div class="pole_tiket">
+                    <label for="destination">Пункт назначения:</label>
+                    <input type="text" name="destination" required>
+                </div>
+            
+                <div class="pole_tiket">
+                    <label for="travel_date">Дата поездки:</label>
+                    <input type="date" name="travel_date" required>
+                </div>
 
-            <div>
-                <input type="submit" value="Купить билет">
-            </div>
-        </form>
+                <!-- <div class="pole_tiket">
+                    <a class = "pay_but"href="tiket_pay">Купить билет</a>
+                </div> -->
+                <div class="pole_tiket" style="text-align: center;">
+                    <input class="oplata" type="submit" value="Купить билет">
+                </div>
+            </form>
+        </div>
     {% endif %}
 {% endblock %}

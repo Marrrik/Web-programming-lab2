@@ -15,8 +15,7 @@ def lab3_form1():
     age = request.args.get('age')
     if age == '':
         errors['age'] = 'Заполните поле!'
-    sex = request.args.get('sex')
-    return render_template("form1.html", user=user, age=age, sex=sex, errors=errors)
+    return render_template("form1.html", user=user, age=age, errors=errors)
 
 
 @laba3.route('/lab3/orders')
@@ -49,8 +48,8 @@ def lab3_itog():
     return render_template("itog.html")
 
 
-@laba3.route('/lab3/gd')
-def lab3_gd():
+@laba3.route('/lab3/tiket')
+def tiket():
     full_name = request.args.get('full_name')
     age = request.args.get('age')
     ticket_type = request.args.get('ticket_type')
@@ -62,7 +61,31 @@ def lab3_gd():
     return render_template("tiket.html", full_name=full_name, age=age, ticket_type=ticket_type, bunk=bunk,luggage=luggage,departure_point=departure_point,
                            destination=destination,travel_date=travel_date)
 
+@laba3.route('/lab3/tiket_pay')
+def tiket_pay():
+        full_price = 0
+        ticket_type = request.args.get('ticket_type')
+        if ticket_type == 'Взрослый':
+            full_price = 2000
+        elif ticket_type == 'Детский':
+            full_price = 1000
+        else:
+            full_price = ''
+        if request.args.get('luggage') == 'yes':
+            full_price +=300
+        bunk = request.args.get('bunk')
+        if bunk == 'Нижняя':
+            full_price += 500
+        elif bunk == 'Верхняя':
+            full_price += 300
+        elif bunk == 'Верхняя боковая':
+            full_price += 250
+        elif bunk == 'Нижняя боковая':
+            full_price += 400
+        else:
+            full_price = ''
+        return render_template("tiket_pay.html", full_price=full_price)
 
-# @laba3.route('/lab3/buy_ticket')
-# def lab3_buy_ticket():
-#     return render_template('buy_ticket.html')
+@laba3.route('/lab3/itog_pay')
+def itog_pay():
+    return render_template("itog_pay.html")

@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+main {
+    margin-bottom: 40px;
+    padding: 10px;
+}
+
+header {
+    font-size: 14pt;
+    color: black;
+    font-weight: bold;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: blueviolet;
+}
+
+footer {
+    font-size: 14pt;
+    color: black;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: blueviolet;
+    text-align: right;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.mem1 {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 40px;
+}
+
+.memimage {
+    height: 500px;
+    width: 500px;
+}
+
+.error {
+    color: red;
+    background-color: black;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+.ramka {
+    margin-left: 32%;
+    border: solid;
+    border-color: blueviolet;
+    border-radius: 50px;
+    width: 500px;
+}
+
+
+.pole_tiket {
+    color: black;
+    margin: 20px;
+    font-weight: bold;
+}
+a {
+    text-decoration: none;
+}
+.pole_but{
+    font-weight: bold;
+    text-align: center;
+    margin: 20px;
+}
+.pay_but {
+    border-radius: 50px;
+    background-color: blueviolet;
+    color: white;
+    height: 20px;
+    width: 40px;
+    font-weight: bold;
+    padding: 15px;
+    box-shadow: 0 9px 18px rgba(0,0,0,0.2)
+}
+
+.oplata {
+    padding: 10px;
+    width:  auto;
+    color: white;
+    background-color: blueviolet;
+    border-radius: 50px;
+    height: auto;
+    font-size: 20px;
+    text-align: center;
+
+}

@@ -8,10 +8,11 @@
     {% if request.cookies.get('color') %}
     <style>
         body {
-            color: {{request.cookies.get('color')}};
-            background-color: {{request.cookies.get('backgroundСolor')}};
-            font-size: {{request.cookies.get('fontSize')}}px;
+            color: {{ request.cookies.get('textColor') }};
+            background-color: {{ request.cookies.get('backgroundСolor') }};
+            font-size: {{ request.cookies.get('fontSize') }}px;
         }
+        
     </style>
     {% endif %}
 </head>
@@ -21,7 +22,8 @@
         <a href="/menu">Меню</a>
     </header>
     <main>
-        {% block main %}{% endblock %}
+        {% block main %}
+        {% endblock %}
     </main>
     <footer> 
         ©<i>Марк Старченко, ФБИ-14, 2 курс, 2023

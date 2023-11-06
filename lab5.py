@@ -19,7 +19,7 @@ def dbClose(cursor, connection):
     cursor.close()
     connection.close()
 
-@laba5.route("/lab5")
+@laba5.route("/lab5/")
 def main():
     conn.close()
     cur.close()
@@ -52,3 +52,49 @@ def show_users():
 
         # Отобразите результаты в HTML
         return render_template('laba5.html', users=results)
+
+
+@laba5.route('/lab5/glav')
+def lab5_glav():
+     return render_template('glav.html')
+
+
+
+
+@laba5.route('/lab5/registr', methods=["GET", "POST"])
+
+def registrPage():
+    errors = []
+
+    if request.method == "GET":
+        return render_template('registr.html', errors=errors)
+     
+    user_name = request.form.get("user_name")
+    password = request.form.get("password")
+
+
+    if not (user_name or password):
+        errors.append("Пожалуйста заполните все поля")
+        print(errors)
+        return render_template('registr.html', errors=errors)
+    
+    conn = dbConnect()
+    cur = conn.cursor()
+
+    cur.execute(f"SELECT username FROM users WHERE username = '{user_name}';")
+
+    if cur.fetchone() is not None:
+        errors.append("Пользователь с данным именем уже существует")
+
+        dbClose(cur, conn)
+        return render_template('registr.html', errors=errors)
+    
+    cur.execute(f"INSERT INTO users (username, password) VALUES ('{user_name}', '{password}');")
+    
+    conn.commit()
+    dbClose(cur, conn)
+    return redirect("/lab5/users")
+
+
+def lab5_registr():
+     return render_template('registr.html')

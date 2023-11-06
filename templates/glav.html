@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block lab %} Лабораторная работа 5 {% endblock %}
+
+{% block main %}
+    <div class="glav_verh">
+        <div style="display: inline;
+        color: rgb(75, 75, 251);
+        height: 30px;
+        font-size: 16pt;
+        font-weight: bold;
+        ">База знаний</div>
+        <div class="zam1"><a href="">Посмотреть заметки</a></div>
+        <div class="zam2">Создать заметки</div>
+        <form action="/example/">
+            <button class="b1" type="submit">Логин</button>
+        </form>
+        <form style="margin-left: 5%;" action="/example/">
+            <button class="b2" type="submit">Регистрация</button>
+        </form>
+
+        {% if user_authenticated %}
+
+                {{ user_name }}
+                
+        {% else %}
+            Анон
+        {% endif %}
+    </div>
+
+{% endblock %}

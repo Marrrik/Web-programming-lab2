@@ -29,6 +29,17 @@
         {% else %}
             <div style="font-weight: bold;">Anon</div>
         {% endif %}
+
+        <div>
+            <h1>Новая заметка</h1>
+
+            <form method="post">
+                <input type="text" name="title_article" placeholder="Название статьи">
+                <textarea name="text_article" placeholder="Текст статьи" rows="20"></textarea>
+                <input type="submit" value="Apply"/>
+            </form>
+        </div>
+
     </div>
 
 {% endblock %}

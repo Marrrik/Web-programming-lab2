@@ -82,7 +82,7 @@ def registrPage():
     conn = dbConnect()
     cur = conn.cursor()
 
-    cur.execute(f"SELECT username FROM users WHERE username = '{user_name}';")
+    cur.execute("SELECT username FROM users WHERE username = %s;", (user_name,))
 
     if cur.fetchone() is not None:
         errors.append("Пользователь с данным именем уже существует")
@@ -91,7 +91,7 @@ def registrPage():
         cur.close()
         return render_template('registr.html', errors=errors)
     
-    cur.execute(f"INSERT INTO users (username, password) VALUES ('{user_name}', '{hashPassword}');")
+    cur.execute("INSERT INTO users (username, password) VALUES (%s, %s);", (user_name, hashPassword))
     
     conn.commit()
     conn.close()
@@ -116,7 +116,7 @@ def loginPage():
     conn = dbConnect()
     cur = conn.cursor()
 
-    cur.execute(f"SELECT id, password FROM users WHERE username = '{user_name}';")
+    cur.execute("SELECT id, password FROM users WHERE username = %s;", (user_name,))
 
     result = cur.fetchone()
 
@@ -136,3 +136,59 @@ def loginPage():
     else:
         errors.append("Неправильный логин или пароль")
         return render_template("login5.html", errors=errors)
+    
+
+@laba5.route("/lab5/newtitle", methods = ["GET", "POST"])
+def createArticle():
+    errors = []
+
+    userID = session.get('id')
+    user_name = session.get('user_name')
+    if userID is not None:
+        if request.method =="GET":
+            return render_template("newtitle.html", user_name=user_name)
+        
+        if request.method == "POST":
+            article_text = request.form.get("article_text")
+            title = request.form.get("article_title")
+
+            if len(article_text)==0:
+                errors.append("Заполните текст")
+                return render_template("new_article", errors = errors, user_name=user_name)
+            
+            conn = dbConnect()
+            cur = conn.cursor()
+
+            cur.execute("INSERT INTO articles (user_id, title, article_text) VALUES (%s, %s, %s) RETURNING id;", (userID, title, article_text))
+            
+            
+            new_articl_id = cur.fetchone()[0]
+            conn.commit()
+
+            dbClose(cur, conn)
+
+            return redirect(f"/lab5/articles/{new_articl_id}")
+
+    return redirect("/lab5/login5")
+
+
+@laba5.route("/lab5/articles/<int:article_id>")
+def getArticle(article_id):
+    userID = session.get('id')
+
+    if userID is not None:
+        conn = dbConnect()
+        cur = conn.cursor()
+
+        cur.execute("SELECT title, article_text FROM articles WHERE id = %s AND user_id = %s", (article_id, userID))
+
+        articleBody = cur.fetchone()
+
+        dbClose(cur, conn)
+
+        if articleBody is None:
+            return "Not found!"
+        
+        text = articleBody[1].splitlines()
+
+    return render_template("articleN.html", article_text=text, article_title=articleBody[0], user_name=session.get("user_name"))

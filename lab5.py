@@ -192,3 +192,27 @@ def getArticle(article_id):
         text = articleBody[1].splitlines()
 
     return render_template("articleN.html", article_text=text, article_title=articleBody[0], user_name=session.get("user_name"))
+
+
+
+@laba5.route('/lab5/articles')
+def list_articles():
+    userID = session.get('id')
+    user_name = session.get("user_name")
+    
+    if userID is not None:
+        conn = dbConnect()
+        cur = conn.cursor()
+        
+        cur.execute("SELECT id, title FROM articles WHERE user_id = %s;", (userID,))
+        articles_data = cur.fetchall()
+        
+        articles = [{'id': row[0], 'title': row[1]} for row in articles_data]
+
+        dbClose(cur, conn)
+
+        return render_template('articles.html', articles=articles, user_name=user_name)
+
+    return redirect("/lab5/login5")
+
+

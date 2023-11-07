@@ -32,23 +32,11 @@
 
     </div>
 
-    <div class="oform_zam">
-        <h1>Новая заметка</h1>
-
-        <form method="post" style="display: block;">
-            <div>
-                <input type="text" name="article_title" placeholder="Название статьи" style="width: 300px;
-                                                                                            margin-top: 15px;
-                                                                                            margin-bottom: 20px;">
-            </div> 
-            <div>                                                                                              
-                <textarea name="article_text" placeholder="Текст статьи" rows="20" style="width: 300px;
-                margin-top: 15px;
-                margin-bottom: 20px;"></textarea>
-            </div>
-                <input type="submit" value="Apply"/>
-            </div>
-        </form>
-    </div>
-
+    <div>статьи пользователя, {{ user_name }}</div>
+    <h1>Мои статьи</h1>
+    <ul>
+        {% for article in articles %}
+        <li>{{ article.title }} <a href="/lab5/articles/{{ article.id }}">/lab5/articles/{{ article.id }}</a></li>
+        {% endfor %}
+    </ul>
 {% endblock %}

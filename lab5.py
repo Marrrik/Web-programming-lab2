@@ -5,8 +5,6 @@ import psycopg2
 
 laba5 = Blueprint('laba5', __name__)
 
-cur = None
-conn = None
 def dbConnect():
     conn = psycopg2.connect(
         host="127.0.0.1",
@@ -22,8 +20,8 @@ def dbClose(cursor, connection):
 
 @laba5.route("/lab5/")
 def main():
-    conn.close()
-    cur.close()
+    conn = dbConnect()  #
+    cur = conn.cursor()  # 
 
     cur.execute("SELECT * FROM users;")
 
@@ -31,7 +29,8 @@ def main():
 
     print(result)
 
-    dbClose(cur, conn)
+    cur.close()
+    conn.close()
 
     return "go to console"
 
@@ -41,17 +40,13 @@ def show_users():
         connection = dbConnect()
         cursor = connection.cursor()
 
-        # Выполните SQL-запрос для выбора имен пользователей
         cursor.execute("SELECT username FROM users")
 
-        # Получите результаты запроса
         results = cursor.fetchall()
 
-        # Закройте соединение
         cursor.close()
         connection.close()
 
-        # Отобразите результаты в HTML
         return render_template('laba5.html', users=results)
 
 
@@ -195,8 +190,60 @@ def getArticle(article_id):
 
 
 
+# @laba5.route('/lab5/articles')
+# def list_articles():
+#     userID = session.get('id')
+#     user_name = session.get("user_name")
+    
+#     if userID is not None:
+#         conn = dbConnect()
+#         cur = conn.cursor()
+        
+#         cur.execute("SELECT id, title FROM articles WHERE user_id = %s;", (userID,))
+#         articles_data = cur.fetchall()
+        
+#         articles = [{'id': row[0], 'title': row[1]} for row in articles_data]
+
+#         dbClose(cur, conn)
+
+#         return render_template('articles.html', articles=articles, user_name=user_name)
+
+#     return redirect("/lab5/login5")
+
+
 @laba5.route('/lab5/articles')
 def list_articles():
+    user_id = session.get('id')
+    user_name = session.get("user_name")
+    show_all_articles = request.args.get('show_all') == '1'
+
+    connection = dbConnect()
+    cursor = connection.cursor()
+
+    if user_id and not show_all_articles:
+        # Если пользователь авторизован и не выбрал "Все статьи"
+        cursor.execute("SELECT id, title FROM articles WHERE user_id = %s", (user_id,))
+    elif user_id and show_all_articles:
+        # Если пользователь авторизован и выбрал "Все статьи",
+        cursor.execute("SELECT id, title FROM articles")
+
+    articles_data = cursor.fetchall()
+    articles = [{'id': row[0], 'title': row[1]} for row in articles_data]
+
+    cursor.close()
+    connection.close()
+
+    return render_template('articles.html', articles=articles, user_name=user_name)
+
+@laba5.route('/lab5/logout', methods = ["GET", "POST"])
+def logout():
+    # Очищаем данные сессии
+    session.clear()
+   
+    return redirect("/lab5/glav")
+
+@laba5.route('/lab5/articles/all', methods = ["GET", "POST"])
+def list_articles_all():
     userID = session.get('id')
     user_name = session.get("user_name")
     
@@ -204,15 +251,11 @@ def list_articles():
         conn = dbConnect()
         cur = conn.cursor()
         
-        cur.execute("SELECT id, title FROM articles WHERE user_id = %s;", (userID,))
-        articles_data = cur.fetchall()
+        cur.execute("SELECT id, title FROM articles;")
+        articles_all = cur.fetchall()
         
-        articles = [{'id': row[0], 'title': row[1]} for row in articles_data]
+        articles_a = [{'id': row[0], 'title': row[1]} for row in articles_all]
 
         dbClose(cur, conn)
 
-        return render_template('articles.html', articles=articles, user_name=user_name)
-
     return redirect("/lab5/login5")
-
-

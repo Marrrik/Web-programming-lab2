@@ -10,12 +10,13 @@ def lab3():
 def lab3_form1():
     errors = {}
     user = request.args.get('user')
+    sex = request.args.get('sex')
     if user == '':
         errors['user'] = 'Заполните поле!'
     age = request.args.get('age')
     if age == '':
         errors['age'] = 'Заполните поле!'
-    return render_template("form1.html", user=user, age=age, errors=errors)
+    return render_template("form1.html", user=user, age=age, errors=errors, sex=sex)
 
 
 @laba3.route('/lab3/orders')
@@ -64,7 +65,7 @@ def tiket():
 @laba3.route('/lab3/tiket_pay')
 def tiket_pay():
         full_price = 0
-        ticket_type = request.args.get('ticket_type')
+                
         if ticket_type == 'Взрослый':
             full_price = 2000
         elif ticket_type == 'Детский':

@@ -9,6 +9,7 @@ from lab2 import laba2
 from lab3 import laba3
 from lab4 import laba4
 from lab5 import laba5
+from lab7 import laba7
 
 app = Flask(__name__)
 from lab6 import laba6
@@ -39,6 +40,7 @@ app.register_blueprint(laba2)
 app.register_blueprint(laba3)
 app.register_blueprint(laba4)
 app.register_blueprint(laba5)
+app.register_blueprint(laba7)
 
 
 # blinker==1.6.2

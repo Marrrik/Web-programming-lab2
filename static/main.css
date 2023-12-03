@@ -21,7 +21,7 @@ footer {
     font-size: 14pt;
     color: black;
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: 40px;
     padding: 10px;
     background-color: blueviolet;
     text-align: right;
@@ -68,6 +68,10 @@ footer {
 a {
     text-decoration: none;
 }
+
+a:active {
+    color: blue;
+}
 .pole_but{
     font-weight: bold;
     text-align: center;
@@ -94,4 +98,56 @@ a {
     font-size: 20px;
     text-align: center;
 
+}
+
+
+.glav_verh {
+    display: flex;
+}
+
+.b1 {
+    height: 30px;
+    color: rgb(75, 75, 251);
+    background-color: white;
+    font-size: 12pt;
+    font-weight: bold;
+    margin-left: 10%;
+    border: 2px blue solid;
+    border-radius: 5px;
+
+}
+
+.b2 {
+    margin-left: 3%;
+    border: 2px blue solid;
+    border-radius: 5px;
+    height: 30px;
+    color: white;
+    background-color: rgb(75, 75, 251);
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+.zam1 {
+    display: inline;
+    color: rgb(75, 75, 251);
+    margin-left: 25%;
+    height: 30px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.zam2 {
+    display: inline;
+    color: rgb(75, 75, 251);
+    margin-left: 5%;
+    height: 30px;
+    margin-right: 18%;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.oform_zam{
+    text-align: center;
+    margin-top: 50px;
 }

@@ -88,7 +88,8 @@ function sendCourse() {
     const course = {
         name: document.getElementById('name').value,
         videos: document.getElementById('videos').value,
-        price: document.getElementById('price').value
+        price: document.getElementById('price').value,
+        createdAt: new Date().toString()
     };
 
     const url = `/lab8/api/courses/${num}`;
@@ -104,12 +105,13 @@ function sendCourse() {
     });
 }
 
+
 function editCourse(num, course) {
     currentCourse = course;
     document.getElementById('num').value = num;
     document.getElementById('name').value = course.name;
     document.getElementById('videos').value = course.videos;
     document.getElementById('price').value = course.price;
+    delete course.createdAt;
     showModal();
-
 }

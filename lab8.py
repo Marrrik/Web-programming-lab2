@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, abort
+from flask import Blueprint, render_template, request, abort, jsonify
 from datetime import datetime
 
 laba8 = Blueprint('laba8', __name__)
@@ -16,7 +16,7 @@ courses = [
 
 @laba8.route('/lab8/api/courses/', methods=['GET'])
 def get_courses():
-    return courses
+    return jsonify(courses)
 
 
 @laba8.route('/lab8/api/courses/<int:course_num>', methods=['GET'])

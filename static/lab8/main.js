@@ -109,7 +109,6 @@ function editCourse(num, course) {
     document.getElementById('name').value = course.name;
     document.getElementById('videos').value = course.videos;
     document.getElementById('price').value = course.price;
-    delete course.createdAt;
     showModal();
 
 }

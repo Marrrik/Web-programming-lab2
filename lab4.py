@@ -116,11 +116,10 @@ def lab4_cookies():
 
     headers = {
         'Set-Cookie': [
-            'textColor=' + textColor + 'path=/',
-            'backgroundСolor=' + backgroundСolor + 'path=/',
-            'fontSize=' + str(fontSize) + 'path=/'
+            'textColor=' + textColor + '; Path=/',
+            'backgroundСolor=' + backgroundСolor + '; Path=/',
+            'fontSize=' + str(fontSize) + '; Path=/'
         ],
         'Location': '/lab4/cookies'
     }
-
     return '', 303, headers

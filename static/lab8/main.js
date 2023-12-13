@@ -25,7 +25,7 @@ function fillCourseList() {
             editButton.innerText = 'редактировать';
             editButton.onclick = function() {
                 editCourse(i, courses[i]);
-            }
+            };
 
             let delButton = document.createElement('button');
             delButton.innerText = 'удалить';
@@ -89,22 +89,23 @@ function sendCourse() {
         name: document.getElementById('name').value,
         videos: document.getElementById('videos').value,
         price: document.getElementById('price').value
-    }
+    };
 
     const url = `/lab8/api/courses/${num}`;
     const method = num ? 'PUT' : 'POST';
-    fetch(url,{
+    fetch(url, {
         method: method,
-        headers: {"Content-Type": "application/json"},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(course)
     })
-    .then (function() {
+    .then(function () {
         fillCourseList();
         hideModal();
     });
 }
 
 function editCourse(num, course) {
+    currentCourse = course;
     document.getElementById('num').value = num;
     document.getElementById('name').value = course.name;
     document.getElementById('videos').value = course.videos;

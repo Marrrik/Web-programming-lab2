@@ -40,8 +40,7 @@ def put_course(course_num):
         return 'Course not found', 404
     course = request.get_json()
     course = courses[course_num]
-    course['createdAt'] = courses[course_num]['createdAt']
-    return courses[course_num]
+    return course[course_num]
 
 
 @laba8.route('/lab8/api/courses/', methods=['POST'])

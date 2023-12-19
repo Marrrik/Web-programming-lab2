@@ -12,7 +12,7 @@ def main():
 
         return redirect(url_for('laba9.card', sender_name=sender_name, recipient_gender=recipient_gender, recipient_name=recipient_name))
     else:
-        return render_template('/lab9/index.html')
+        return render_template('lab9/index.html')
 
 
 @laba9.route('/lab9/card', methods=['GET'])
@@ -21,13 +21,13 @@ def card():
     recipient_gender = request.args.get('recipient_gender')
     recipient_name = request.args.get('recipient_name')
 
-    return render_template('/lab9/card.html', sender_name=sender_name, recipient_gender=recipient_gender, recipient_name=recipient_name)
+    return render_template('lab9/card.html', sender_name=sender_name, recipient_gender=recipient_gender, recipient_name=recipient_name)
 
 
 @laba9.app_errorhandler(404)
 def not_found(e):
-    return render_template('/lab9/error.html'), 404
+    return render_template('lab9/error.html'), 404
 
 @laba9.app_errorhandler(500)
 def not_found(e):
-    return render_template('/lab9/error500.html'), 500
+    return render_template('lab9/error500.html'), 500

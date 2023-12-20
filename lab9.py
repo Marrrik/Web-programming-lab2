@@ -28,6 +28,12 @@ def card():
 def not_found(e):
     return render_template('lab9/error.html'), 404
 
+
+@laba9.route("/lab9/er")
+def index():
+    raise Exception("Произошла ошибка!")
+
+
 @laba9.app_errorhandler(500)
 def not_found(e):
     return render_template('lab9/error500.html'), 500
